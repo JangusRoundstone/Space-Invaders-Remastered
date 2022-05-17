@@ -2,28 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
-    private Transform player;
-    public float speed;
-    public float maxBound, minBound;
+public class PlayerController : MonoBehaviour {
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = GetComponent<Transform> ();
-    }
+	private Transform player;
+	public float speed;
+	public float maxBound, minBound;
 
-    // Update is called once per frame
-    void Update()
-    {
-        float h = Input.GetAxis("Horizontal"); //moves the player from -1 to 1 on the x axis
+	public GameObject shot;
+	public Transform shotSpawn;
+	public float fireRate;
 
-        if (player.position.x < minBound && h < 0) {
-            h = 0;
-        } else if (player.position.x > maxBound && h > 0) {
-            h = 0;
-        }
-        player.position += Vector3.right * h * speed;
-    }
+	private float nextFire;
+
+	// Use this for initialization
+	void Start () {
+		player = GetComponent<Transform> ();
+	}
+
+	void FixedUpdate () {
+		float h = Input.GetAxis ("Horizontal");
+
+		if (player.position.x < minBound && h < 0)
+			h = 0;
+		else if (player.position.x > maxBound && h > 0)
+			h = 0;
+
+		player.position += Vector3.right * h * speed;
+	}
+
+	void Update(){
+		if (Input.GetKey ("space") && Time.time > nextFire) {
+			nextFire = Time.time + fireRate;
+			Instantiate (shot, shotSpawn.position, shotSpawn.rotation);
+		}
+	}
+
 }
