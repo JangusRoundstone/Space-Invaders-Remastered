@@ -12,7 +12,11 @@ public class GameOver : MonoBehaviour
     void Start()
     {
         gameOver = GetComponent<Text> ();
-        gameOver.enabled = false;
+        if (gameOver != null) 
+        {
+            gameOver.enabled = false;
+        }
+        
     }
 
     // Update is called once per frame
