@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 
 public class GameOver : MonoBehaviour
 {
     public static bool isPlayerDead =  false;
-    private Text gameOver;
+    private TextMeshProUGUI gameOver;
     // Start is called before the first frame update
     void Start()
     {
-        gameOver = GetComponent<Text> ();
+        gameOver = GetComponent<TextMeshProUGUI> ();
         if (gameOver != null) 
         {
             gameOver.enabled = false;
