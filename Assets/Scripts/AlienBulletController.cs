@@ -28,9 +28,17 @@ public class AlienBulletController : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-            GameOver.isPlayerDead = true;
+            if (PlayerLives.playerLives == 1) 
+            {
+                PlayerLives.playerLives = 0;
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+                GameOver.isPlayerDead = true;
+            } else 
+            {
+                PlayerLives.playerLives -= 1;
+            }
+         
         } else if (other.tag == "Base")
         {
             GameObject playerBase = other.gameObject;
