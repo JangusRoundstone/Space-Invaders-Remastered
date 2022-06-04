@@ -6,6 +6,7 @@ public class AlienBulletController : MonoBehaviour
 {
     private Transform bullet;
     public float speed;
+    Vector3 respawn = new Vector3(0, -5, 0);
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,8 @@ public class AlienBulletController : MonoBehaviour
             } else 
             {
                 PlayerLives.playerLives -= 1;
+                other.gameObject.transform.position = respawn;
+                GameManager.playGame = false;
             }
          
         } else if (other.tag == "Base")

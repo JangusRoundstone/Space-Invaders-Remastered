@@ -15,7 +15,7 @@ public class BulletController : MonoBehaviour {
 	void FixedUpdate(){
 		bullet.position += Vector3.up * speed;
 
-		if (bullet.position.y >= 10)
+		if (bullet.position.y >= 6.5)
 			Destroy (gameObject);
 	}
 

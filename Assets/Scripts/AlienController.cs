@@ -25,41 +25,45 @@ public class AlienController : MonoBehaviour
     // Update is called once per frame
     void MoveAlien()
     {
-        alienHolder.position += Vector3.right * speed;
-
-        foreach (Transform alien in alienHolder)
+        if (GameManager.playGame)
         {
-            if (alien.position.x < -10.5 || alien.position.x > 10.5)
+            alienHolder.position += Vector3.right * speed;
+
+            foreach (Transform alien in alienHolder)
             {
-                speed = -speed;
-                alienHolder.position += Vector3.down * 0.5f;
-                return;
+                if (alien.position.x < -10.5 || alien.position.x > 10.5)
+                {
+                    speed = -speed;
+                    alienHolder.position += Vector3.down * 0.5f;
+                    return;
+                }
+
+                if (Random.value > fireRate)
+                {
+                    Instantiate(shot, alien.position, alien.rotation);
+                }
+
+                if (alien.position.y <= -4)
+                {
+                    GameOver.isPlayerDead = true;
+                    Time.timeScale = 0;
+                }
             }
 
-            if (Random.value > fireRate)
+            if (alienHolder.childCount == 1)
             {
-                Instantiate(shot, alien.position, alien.rotation);
+                CancelInvoke();
+                InvokeRepeating("MoveAlien", 0.1f, 0.25f);
             }
 
-            if (alien.position.y <= -4)
+            if (alienHolder.childCount == 0)
             {
-                GameOver.isPlayerDead = true;
-                Time.timeScale = 0;
+                if (winText != null)
+                {
+                    winText.enabled = true;
+                }
             }
         }
-
-        if (alienHolder.childCount == 1)
-        {
-            CancelInvoke();
-            InvokeRepeating("MoveAlien", 0.1f, 0.25f);
-        }
-
-        if (alienHolder.childCount == 0)
-        {
-            if (winText != null)
-            {
-                winText.enabled = true;
-            }
-        }
+        
     }
 }
