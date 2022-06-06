@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class AlienController : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class AlienController : MonoBehaviour
     public float speed;
     public GameObject shot;
     public TextMeshProUGUI winText;
-    public float fireRate= 0.997f;
+    public float fireRate= 0.99f;
 
     // Start is called before the first frame update
     void Start()
@@ -56,13 +57,17 @@ public class AlienController : MonoBehaviour
                 InvokeRepeating("MoveAlien", 0.1f, 0.25f);
             }
 
-            if (alienHolder.childCount == 0)
+            if (SceneManager.GetActiveScene().buildIndex == 2)
             {
-                if (winText != null)
+                if (alienHolder.childCount == 0)
                 {
-                    winText.enabled = true;
+                    if (winText != null)
+                    {
+                         winText.enabled = true;
+                    }
                 }
             }
+
         }
         
     }
