@@ -11,6 +11,7 @@ public class RestartLevel : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R))
         {
             PlayerScore.playerScore = 0;
+            PlayerLives.playerLives = 3;
             GameOver.isPlayerDead = false;
             Time.timeScale = 1;
 
