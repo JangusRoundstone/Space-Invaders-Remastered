@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AlienBulletController : MonoBehaviour
 {
+    private AudioSource explosion;
     private Transform bullet;
     public float speed;
     Vector3 respawn = new Vector3(0, -5, 0);
@@ -12,6 +13,7 @@ public class AlienBulletController : MonoBehaviour
     void Start()
     {
         bullet = GetComponent<Transform> ();
+        explosion = GetComponent<AudioSource> ();
     }
 
     void FixedUpdate()
@@ -29,6 +31,7 @@ public class AlienBulletController : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            explosion.Play();
             if (PlayerLives.playerLives == 1) 
             {
                 PlayerLives.playerLives = 0;

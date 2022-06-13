@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour {
 	public float fireRate;
 
 	private float nextFire;
+	private AudioSource laser;
 
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<Transform> ();
+		laser = GetComponent<AudioSource> ();
 	}
 
 	void FixedUpdate () {
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0)) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation);
+			laser.Play();
 			if (!GameManager.playGame)
 				GameManager.playGame = true; 
 		}
