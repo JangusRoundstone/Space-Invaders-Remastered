@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class AlienBulletController : MonoBehaviour
 {
-    private AudioSource explosion;
+    public AudioClip explosionSound;
     private Transform bullet;
+    public GameObject explosionEffect;
     public float speed;
     Vector3 respawn = new Vector3(0, -5, 0);
 
@@ -13,7 +14,6 @@ public class AlienBulletController : MonoBehaviour
     void Start()
     {
         bullet = GetComponent<Transform> ();
-        explosion = GetComponent<AudioSource> ();
     }
 
     void FixedUpdate()
@@ -31,7 +31,8 @@ public class AlienBulletController : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            explosion.Play();
+            Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
+			AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             if (PlayerLives.playerLives == 1) 
             {
                 PlayerLives.playerLives = 0;
@@ -47,6 +48,8 @@ public class AlienBulletController : MonoBehaviour
          
         } else if (other.tag == "Base")
         {
+            Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
+			AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             GameObject playerBase = other.gameObject;
             BaseHealth baseHealth = playerBase.GetComponent<BaseHealth> ();
             baseHealth.health -= 1;

@@ -10,7 +10,7 @@ public class ScenesLoader : MonoBehaviour
     {
         if (PlayerScore.playerScore == 240 && SceneManager.GetActiveScene().buildIndex == 1)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene("Stage 2");
         }
         
     }

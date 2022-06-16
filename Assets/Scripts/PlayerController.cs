@@ -45,7 +45,11 @@ public class PlayerController : MonoBehaviour {
 		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0)) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation);
-			laser.Play();
+			if (laser != null)
+			{
+				laser.Play();
+			}
+			//laser.Play();
 			if (!GameManager.playGame)
 				GameManager.playGame = true; 
 		}

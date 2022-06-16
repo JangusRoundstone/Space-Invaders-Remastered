@@ -10,7 +10,7 @@ public class ReturnToMain : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 2 && Input.GetKeyDown(KeyCode.M))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Main Menu");
         }
     
     }

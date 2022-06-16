@@ -15,7 +15,7 @@ public class RestartLevel : MonoBehaviour
             GameOver.isPlayerDead = false;
             Time.timeScale = 1;
 
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("Stage 1");
         }
     }
 }

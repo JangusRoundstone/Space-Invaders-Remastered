@@ -5,7 +5,8 @@ using UnityEngine;
 public class BulletController : MonoBehaviour {
 
 	private Transform bullet;
-	public AudioClip explosion;
+	public AudioClip explosionSound;
+	public GameObject explosionEffect;
 	public float speed;
 
 	// Use this for initialization
@@ -22,7 +23,8 @@ public class BulletController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Alien") {
-			AudioSource.PlayClipAtPoint(explosion, transform.position);
+			Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
+			AudioSource.PlayClipAtPoint(explosionSound, transform.position);
 			Destroy (other.gameObject);
 			Destroy (gameObject);
 			PlayerScore.playerScore += 10;
