@@ -28,7 +28,17 @@ public class BulletController : MonoBehaviour {
 			Destroy (other.gameObject);
 			Destroy (gameObject);
 			PlayerScore.playerScore += 10;
-		} else if (other.tag == "Base")
+		} 
+		else if (other.tag == "Base")
+		{
 			Destroy (gameObject);
+		}
+		else if (other.tag == "Friendly"){
+			Destroy(gameObject);
+			GameObject Astro = other.gameObject; // set Astro to be the Astronaut the Radiator ran into
+            AstronautControl Astronaut = Astro.GetComponent<AstronautControl>(); // access the script on Astro, which is Astronaut (script)
+            Astronaut.health = 0; // set the health of Astro (gameObject) to 0 without affecting other Astronauts
+            PlayerScore.playerScore -= 50;
+		}		
 	}
 }

@@ -59,7 +59,7 @@ public class AlienController : MonoBehaviour
 
             if (SceneManager.GetActiveScene().buildIndex == 2)
             {
-                if (alienHolder.childCount == 0)
+                if (alienHolder.childCount == 0 && RadiatorControl.health == 0)
                 {
                     if (winText != null)
                     {

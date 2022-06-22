@@ -35,6 +35,8 @@ public class RadiatorControl : MonoBehaviour
 
     Collider2D m_Collider;
 
+    Vector3 respawn = new Vector3(0, -5, 0);
+
     void Start()
     {
         Radiator = GetComponent<Transform>();
@@ -108,8 +110,9 @@ public class RadiatorControl : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Destroy(other.gameObject);
-            GameOver.isPlayerDead = true;
+            PlayerLives.playerLives -= 1;
+            other.gameObject.transform.position = respawn;
+            GameManager.playGame = false;
         }
         else if (other.tag == "Base")
         {
