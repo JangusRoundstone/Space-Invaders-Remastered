@@ -37,6 +37,12 @@ public class RadiatorControl : MonoBehaviour
 
     Vector3 respawn = new Vector3(0, -5, 0);
 
+    public AudioClip chargingUpSound;
+
+    public AudioClip explosionSound;
+
+    public GameObject explosionEffect;
+
     void Start()
     {
         Radiator = GetComponent<Transform>();
@@ -51,6 +57,7 @@ public class RadiatorControl : MonoBehaviour
     void FixedUpdate()
     {
         if(Math.Abs(Radiator.position.x - transform.position.x) <= 0.5f && Alive == true && Time.time > NextCharge){
+            AudioSource.PlayClipAtPoint(chargingUpSound, transform.position);
             NextCharge += ChargeRate;
             ToCharge = true;
             StartCoroutine(ChangeSprite());
@@ -108,11 +115,22 @@ public class RadiatorControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Instantiate(explosionEffect, Radiator.position, transform.rotation = Quaternion.identity);
+        AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         if (other.tag == "Player")
         {
-            PlayerLives.playerLives -= 1;
-            other.gameObject.transform.position = respawn;
-            GameManager.playGame = false;
+            if (PlayerLives.playerLives == 1) 
+            {
+                PlayerLives.playerLives = 0;
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+                GameOver.isPlayerDead = true;
+            } else 
+            {
+                PlayerLives.playerLives -= 1;
+                other.gameObject.transform.position = respawn;
+                GameManager.playGame = false;
+            }
         }
         else if (other.tag == "Base")
         {
