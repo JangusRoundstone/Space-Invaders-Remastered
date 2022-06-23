@@ -146,5 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionSound: {fileID: 8300000, guid: a30d458b07030e94aade331a27de96a1, type: 3}
+  healingSound: {fileID: 8300000, guid: d5b459b4b038aa14e9617cbf632a5b61, type: 3}
   explosionEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+  healingEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
   speed: 0.1

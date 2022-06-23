@@ -25,7 +25,7 @@ public class RadiatorControl : MonoBehaviour
 
     private Vector2 startPos;
 
-    public static float health = 2;
+    public static float health = 5;
 
     private bool Alive = true;
 
@@ -136,7 +136,7 @@ public class RadiatorControl : MonoBehaviour
         {
             GameObject playerBase = other.gameObject;
             BaseHealth baseHealth = playerBase.GetComponent<BaseHealth>();
-            baseHealth.health -= 1;
+            baseHealth.health = 0;
         }
         else if (other.tag == "Bullet"){
             health -= 1;

@@ -5,8 +5,10 @@ using UnityEngine;
 public class AlienBulletController : MonoBehaviour
 {
     public AudioClip explosionSound;
+    public AudioClip healingSound;
     private Transform bullet;
     public GameObject explosionEffect;
+    public GameObject healingEffect;
     public float speed;
     Vector3 respawn = new Vector3(0, -5, 0);
 
@@ -46,7 +48,8 @@ public class AlienBulletController : MonoBehaviour
                 GameManager.playGame = false;
             }
          
-        } else if (other.tag == "Base")
+        } 
+        else if (other.tag == "Base")
         {
             Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
 			AudioSource.PlayClipAtPoint(explosionSound, transform.position);
@@ -54,6 +57,16 @@ public class AlienBulletController : MonoBehaviour
             BaseHealth baseHealth = playerBase.GetComponent<BaseHealth> ();
             baseHealth.health -= 1;
             Destroy(gameObject);
+        } 
+        else if (other.tag == "Radiator")
+        {
+            Instantiate(healingEffect, bullet.position, transform.rotation = Quaternion.identity);
+			AudioSource.PlayClipAtPoint(healingSound, transform.position);
+            if (RadiatorControl.health >= 5) {
+                RadiatorControl.health = 5;
+            } else {
+                RadiatorControl.health += 1;
+            }
         }
     }
 }
