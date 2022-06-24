@@ -15,7 +15,22 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("How To Play");
     }
 
-    public void BackButton()
+    public void BackButton_HowToPlay()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void NextButton_HowToPlay()
+    {
+        SceneManager.LoadScene("Walkthrough");
+    }
+
+    public void BackButton_Walkthrough()
+    {
+        SceneManager.LoadScene("How To Play");
+    }
+
+    public void ReturnButton_Walkthrough()
     {
         SceneManager.LoadScene("Main Menu");
     }

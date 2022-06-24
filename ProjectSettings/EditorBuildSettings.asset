@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/How To Play.unity
     guid: 40b9c62d2c59a37408e9cc9f421f0140
+  - enabled: 1
+    path: Assets/Scenes/Walkthrough.unity
+    guid: c34ea5126ee4e6049ac71428434c5155
   m_configObjects: {}
