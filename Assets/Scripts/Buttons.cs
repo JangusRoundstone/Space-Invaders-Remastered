@@ -34,4 +34,10 @@ public class Buttons : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
     }
+
+    public void QuitButton() 
+    {
+        //Debug.Log("quit");
+        Application.Quit();
+    }
 }
