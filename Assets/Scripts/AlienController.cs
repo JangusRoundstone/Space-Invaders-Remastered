@@ -10,7 +10,7 @@ public class AlienController : MonoBehaviour
     public float speed;
     public GameObject shot;
     public TextMeshProUGUI winText;
-    public float fireRate= 0.99f;
+    public float fireRate = 0.99f;
 
     // Start is called before the first frame update
     void Start()

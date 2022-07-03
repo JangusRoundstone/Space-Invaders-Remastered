@@ -49,7 +49,6 @@ public class PlayerController : MonoBehaviour {
 			{
 				laser.Play();
 			}
-			//laser.Play();
 			if (!GameManager.playGame)
 				GameManager.playGame = true; 
 		}
