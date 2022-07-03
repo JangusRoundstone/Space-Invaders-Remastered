@@ -8,7 +8,7 @@ public class ReturnToMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 2 && Input.GetKeyDown(KeyCode.M))
+        if (SceneManager.GetActiveScene().buildIndex == 3 && Input.GetKeyDown(KeyCode.M))
         {
             SceneManager.LoadScene("Main Menu");
         }

@@ -16,9 +16,14 @@ public class BossController : MonoBehaviour
     public GameObject alienShot;
     public TextMeshProUGUI winText;
     public float fireRate;
+    public static float bossHealth = 20;
     // Start is called before the first frame update
     void Start()
     {
+        if (winText != null)
+        {
+            winText.enabled = false;
+        }
         InvokeRepeating ("MoveBoss", 0.1f, 0.3f);
         bossHolder = GetComponent<Transform> ();
     }
@@ -38,7 +43,7 @@ public class BossController : MonoBehaviour
                     return;
                 }
 
-                if (Random.value > fireRate)
+                if (Random.value > fireRate && rightGun != null && leftGun != null)
                 {
                     Instantiate(bossShot, rightGun.position, rightGun.rotation);
                     Instantiate(bossShot, leftGun.position, leftGun.rotation);
@@ -51,6 +56,18 @@ public class BossController : MonoBehaviour
                 if (Random.value > fireRate)
                 {
                     Instantiate(alienShot, alien.position, alien.rotation);
+                }
+            }
+
+            if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                if (alienHolder.childCount == 0 && BossController.bossHealth == 0)
+                {
+                    if (winText != null)
+                    {
+                         winText.enabled = true;
+                    }
+
                 }
             }
 

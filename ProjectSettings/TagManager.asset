@@ -9,6 +9,7 @@ TagManager:
   - Alien
   - Friendly
   - Radiator
+  - Boss
   layers:
   - Default
   - TransparentFX

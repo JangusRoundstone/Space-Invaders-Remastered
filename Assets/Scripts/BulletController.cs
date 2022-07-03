@@ -29,6 +29,16 @@ public class BulletController : MonoBehaviour {
 			Destroy (gameObject);
 			PlayerScore.playerScore += 10;
 		} 
+		else if (other.tag == "Boss") {
+			Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
+			AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+			Destroy(gameObject);
+			BossController.bossHealth -= 1;
+			PlayerScore.playerScore += 5;
+			if (BossController.bossHealth <= 0) {
+				Destroy(other.gameObject);
+			}
+		}
 		else if (other.tag == "Base")
 		{
 			Destroy (gameObject);

@@ -6,19 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class AlienController : MonoBehaviour
 {
-    private Transform alienHolder;
+    public static Transform alienHolder;
     public float speed;
     public GameObject shot;
-    public TextMeshProUGUI winText;
     public float fireRate = 0.99f;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (winText != null)
-        {
-            winText.enabled = false;
-        }
         InvokeRepeating ("MoveAlien", 0.1f, 0.3f);
         alienHolder = GetComponent<Transform> ();
     }
@@ -55,18 +50,6 @@ public class AlienController : MonoBehaviour
             {
                 CancelInvoke();
                 InvokeRepeating("MoveAlien", 0.1f, 0.25f);
-            }
-
-            if (SceneManager.GetActiveScene().buildIndex == 2)
-            {
-                if (alienHolder.childCount == 0 && RadiatorControl.health == 0)
-                {
-                    if (winText != null)
-                    {
-                         winText.enabled = true;
-                    }
-
-                }
             }
 
         }
