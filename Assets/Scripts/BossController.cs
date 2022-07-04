@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -8,12 +9,16 @@ public class BossController : MonoBehaviour
 {
 
     private Transform bossHolder;
+    public Transform boss;
+    public Transform player;
     public Transform alienHolder;
     public Transform rightGun;
     public Transform leftGun;
+    public Transform bossEye;
     public float speed;
     public GameObject bossShot;
     public GameObject alienShot;
+    public GameObject bossLaser;
     public TextMeshProUGUI winText;
     public float fireRate;
     public static float bossHealth = 20;
@@ -43,7 +48,7 @@ public class BossController : MonoBehaviour
                     return;
                 }
 
-                if (Random.value > fireRate && rightGun != null && leftGun != null)
+                if (UnityEngine.Random.value > fireRate && rightGun != null && leftGun != null)
                 {
                     Instantiate(bossShot, rightGun.position, rightGun.rotation);
                     Instantiate(bossShot, leftGun.position, leftGun.rotation);
@@ -53,10 +58,15 @@ public class BossController : MonoBehaviour
 
             foreach (Transform alien in alienHolder)
             {
-                if (Random.value > fireRate)
+                if (UnityEngine.Random.value > fireRate)
                 {
                     Instantiate(alienShot, alien.position, alien.rotation);
                 }
+            }
+            
+            if (Math.Abs(boss.position.x - player.position.x) <= 0.5f && bossEye != null)
+            {
+                Instantiate(bossLaser, bossEye.position, bossEye.rotation);
             }
 
             if (SceneManager.GetActiveScene().buildIndex == 3)

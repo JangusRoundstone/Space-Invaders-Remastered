@@ -1029,12 +1029,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059fdc502f02ec14f9c52a47b6db9a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 6331315}
+  player: {fileID: 1290877313}
   alienHolder: {fileID: 1074054375}
   rightGun: {fileID: 1670943846}
   leftGun: {fileID: 563150340}
+  bossEye: {fileID: 1545275100}
   speed: 1
   bossShot: {fileID: 1858502327209439987, guid: 6d9f975a78bb6db48ad442f268f4010f, type: 3}
   alienShot: {fileID: 2317463404501505722, guid: d5b3cc7bda4ed0541ab3b930a18b34d6, type: 3}
+  bossLaser: {fileID: 5160666758160312156, guid: 902caf2b78293d142ac025392724ab6c, type: 3}
   winText: {fileID: 1086810837}
   fireRate: 0.9
 --- !u!1001 &514067307
