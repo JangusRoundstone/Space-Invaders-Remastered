@@ -6,6 +6,7 @@ public class BulletController : MonoBehaviour {
 
 	private Transform bullet;
 	public AudioClip explosionSound;
+	public AudioClip healingSound;
 	public GameObject explosionEffect;
 	public float speed;
 
@@ -49,6 +50,16 @@ public class BulletController : MonoBehaviour {
             AstronautControl Astronaut = Astro.GetComponent<AstronautControl>(); // access the script on Astro, which is Astronaut (script)
             Astronaut.health = 0; // set the health of Astro (gameObject) to 0 without affecting other Astronauts
             PlayerScore.playerScore -= 50;
-		}		
+		}	
+		else if (other.tag == "Heart") {
+			AudioSource.PlayClipAtPoint(healingSound, transform.position);
+			Destroy(gameObject);
+			Destroy(other.gameObject);
+			if (PlayerLives.playerLives >= 3) {
+				PlayerLives.playerLives = 3;
+			} else {
+				PlayerLives.playerLives += 1;
+			}
+		}	
 	}
 }

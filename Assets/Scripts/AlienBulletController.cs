@@ -44,6 +44,7 @@ public class AlienBulletController : MonoBehaviour
             } else 
             {
                 PlayerLives.playerLives -= 1;
+                Destroy(gameObject);
                 other.gameObject.transform.position = respawn;
                 GameManager.playGame = false;
             }
@@ -62,6 +63,7 @@ public class AlienBulletController : MonoBehaviour
         {
             Instantiate(healingEffect, bullet.position, transform.rotation = Quaternion.identity);
 			AudioSource.PlayClipAtPoint(healingSound, transform.position);
+            Destroy(gameObject);
             if (RadiatorControl.health >= 5) {
                 RadiatorControl.health = 5;
             } else {

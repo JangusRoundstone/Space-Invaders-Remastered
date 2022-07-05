@@ -22,6 +22,8 @@ public class BossController : MonoBehaviour
     public TextMeshProUGUI winText;
     public float fireRate;
     public static float bossHealth = 20;
+    public AudioClip victoryNote;
+    private bool hasVictoryNotePlayed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,21 +66,24 @@ public class BossController : MonoBehaviour
                 }
             }
             
-            if (Math.Abs(boss.position.x - player.position.x) <= 0.5f && bossEye != null)
+            if (bossEye != null && player != null && alienHolder != null && Math.Abs(boss.position.x - player.position.x) <= 0.5f)
             {
                 Instantiate(bossLaser, bossEye.position, bossEye.rotation);
             }
 
-            if (SceneManager.GetActiveScene().buildIndex == 3)
+            if (SceneManager.GetActiveScene().buildIndex == 3 && alienHolder.childCount == 0 && BossController.bossHealth == 0)
             {
-                if (alienHolder.childCount == 0 && BossController.bossHealth == 0)
+                
+                if (winText != null)
                 {
-                    if (winText != null)
-                    {
-                         winText.enabled = true;
-                    }
-
+                     winText.enabled = true;
                 }
+                   
+                if (!hasVictoryNotePlayed) {
+                    AudioSource.PlayClipAtPoint(victoryNote, new Vector3(0, 0, 0));
+                    hasVictoryNotePlayed = true;
+                }
+                 
             }
 
         }

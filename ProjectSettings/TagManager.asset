@@ -10,6 +10,7 @@ TagManager:
   - Friendly
   - Radiator
   - Boss
+  - Heart
   layers:
   - Default
   - TransparentFX
