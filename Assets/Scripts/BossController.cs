@@ -21,7 +21,7 @@ public class BossController : MonoBehaviour
     public GameObject bossLaser;
     public TextMeshProUGUI winText;
     public float fireRate;
-    public static float bossHealth = 20;
+    public static float bossHealth = 1;
     public AudioClip victoryNote;
     private bool hasVictoryNotePlayed = false;
     // Start is called before the first frame update
@@ -71,7 +71,7 @@ public class BossController : MonoBehaviour
                 Instantiate(bossLaser, bossEye.position, bossEye.rotation);
             }
 
-            if (SceneManager.GetActiveScene().buildIndex == 3 && alienHolder.childCount == 0 && BossController.bossHealth == 0)
+            if (SceneManager.GetActiveScene().buildIndex == 3 && alienHolder.childCount == 0 && bossHealth == 0)
             {
                 
                 if (winText != null)
@@ -80,7 +80,7 @@ public class BossController : MonoBehaviour
                 }
                    
                 if (!hasVictoryNotePlayed) {
-                    AudioSource.PlayClipAtPoint(victoryNote, new Vector3(0, 0, 0));
+                    AudioSource.PlayClipAtPoint(victoryNote, new Vector3(0, 0, -20));
                     hasVictoryNotePlayed = true;
                 }
                  

@@ -30,6 +30,12 @@ public class BulletController : MonoBehaviour {
 			Destroy (gameObject);
 			PlayerScore.playerScore += 10;
 		} 
+		else if (other.tag == "AlienBullet") {
+			Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
+			AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+			Destroy (other.gameObject);
+			Destroy (gameObject);
+		} 
 		else if (other.tag == "Boss") {
 			Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
 			AudioSource.PlayClipAtPoint(explosionSound, transform.position);

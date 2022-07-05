@@ -11,6 +11,7 @@ TagManager:
   - Radiator
   - Boss
   - Heart
+  - AlienBullet
   layers:
   - Default
   - TransparentFX

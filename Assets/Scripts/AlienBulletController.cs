@@ -35,7 +35,7 @@ public class AlienBulletController : MonoBehaviour
         {
             Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
 			AudioSource.PlayClipAtPoint(explosionSound, transform.position);
-            if (PlayerLives.playerLives == 1) 
+            if (PlayerLives.playerLives <= 1) 
             {
                 PlayerLives.playerLives = 0;
                 Destroy(other.gameObject);
