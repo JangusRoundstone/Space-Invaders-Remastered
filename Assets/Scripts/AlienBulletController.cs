@@ -28,6 +28,7 @@ public class AlienBulletController : MonoBehaviour
         }
     }
 
+
     // Update is called once per frame
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -43,10 +44,12 @@ public class AlienBulletController : MonoBehaviour
                 GameOver.isPlayerDead = true;
             } else 
             {
-                PlayerLives.playerLives -= 1;
-                Destroy(gameObject);
-                other.gameObject.transform.position = respawn;
-                GameManager.playGame = false;
+                if (PlayerController.player.GetComponent<Collider2D>().enabled) { //only trigger when immunity is false
+                    PlayerLives.playerLives -= 1;
+                    Destroy(gameObject);
+                    other.gameObject.transform.position = respawn;
+                    GameManager.playGame = false;
+                }
             }
          
         } 

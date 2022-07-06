@@ -21,7 +21,7 @@ public class BossController : MonoBehaviour
     public GameObject bossLaser;
     public TextMeshProUGUI winText;
     public float fireRate;
-    public static float bossHealth = 1;
+    public static float bossHealth = 50;
     public AudioClip victoryNote;
     private bool hasVictoryNotePlayed = false;
     // Start is called before the first frame update
@@ -41,6 +41,10 @@ public class BossController : MonoBehaviour
         if (GameManager.playGame)
         {
             bossHolder.position += Vector3.right * speed;
+            if (alienHolder.childCount == 0)    {
+                bossHolder.position += Vector3.right * (speed * 2);
+                fireRate = 0.8f;
+            }
 
             foreach (Transform enemy in bossHolder)
             {

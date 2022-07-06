@@ -30,7 +30,7 @@ public class BulletController : MonoBehaviour {
 			Destroy (gameObject);
 			PlayerScore.playerScore += 10;
 		} 
-		else if (other.tag == "AlienBullet") {
+		else if (other.tag == "EnemyBullet") {
 			Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
 			AudioSource.PlayClipAtPoint(explosionSound, transform.position);
 			Destroy (other.gameObject);
@@ -61,11 +61,15 @@ public class BulletController : MonoBehaviour {
 			AudioSource.PlayClipAtPoint(healingSound, transform.position);
 			Destroy(gameObject);
 			Destroy(other.gameObject);
-			if (PlayerLives.playerLives >= 3) {
-				PlayerLives.playerLives = 3;
-			} else {
-				PlayerLives.playerLives += 1;
+			if (PlayerLives.playerLives >= 5) {
+				PlayerLives.playerLives = 5;
 			}
+			PlayerLives.playerLives += 1;
+		}
+		else if (other.tag == "Ammo") {
+			AudioSource.PlayClipAtPoint(healingSound, transform.position);
+			Destroy(gameObject);
+			Destroy(other.gameObject);
 		}	
 	}
 }

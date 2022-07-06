@@ -11,7 +11,8 @@ TagManager:
   - Radiator
   - Boss
   - Heart
-  - AlienBullet
+  - EnemyBullet
+  - Ammo
   layers:
   - Default
   - TransparentFX
