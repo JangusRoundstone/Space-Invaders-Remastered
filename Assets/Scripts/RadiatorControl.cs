@@ -43,6 +43,8 @@ public class RadiatorControl : MonoBehaviour
 
     public GameObject explosionEffect;
 
+    private PlayerLives playerLives;
+
     void Start()
     {
         Radiator = GetComponent<Transform>();
@@ -51,6 +53,7 @@ public class RadiatorControl : MonoBehaviour
         transform = Player.GetComponent<Transform>();
         startPos = Radiator.position;
         m_Collider = GetComponent<Collider2D>();
+        playerLives =  FindObjectOfType<PlayerLives>();
     }
 
     // Update is called once per frame
@@ -119,15 +122,15 @@ public class RadiatorControl : MonoBehaviour
         AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         if (other.tag == "Player")
         {
-            if (PlayerLives.playerLives == 1) 
+            if (playerLives.lives == 1) 
             {
-                PlayerLives.playerLives = 0;
+                playerLives.lives = 0;
                 Destroy(other.gameObject);
                 Destroy(gameObject);
                 GameOver.isPlayerDead = true;
             } else 
             {
-                PlayerLives.playerLives -= 1;
+                playerLives.lives -= 1;
                 other.gameObject.transform.position = respawn;
                 GameManager.playGame = false;
             }

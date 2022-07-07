@@ -9,10 +9,12 @@ public class BulletController : MonoBehaviour {
 	public AudioClip healingSound;
 	public GameObject explosionEffect;
 	public float speed;
+	private PlayerLives playerLives;
 
 	// Use this for initialization
 	void Start () {
 		bullet = GetComponent<Transform> ();
+		playerLives =  FindObjectOfType<PlayerLives>();
 	}
 
 	void FixedUpdate(){
@@ -43,6 +45,7 @@ public class BulletController : MonoBehaviour {
 			BossController.bossHealth -= 1;
 			PlayerScore.playerScore += 5;
 			if (BossController.bossHealth <= 0) {
+				BossController.bossHealth = 0;
 				Destroy(other.gameObject);
 			}
 		}
@@ -61,10 +64,10 @@ public class BulletController : MonoBehaviour {
 			AudioSource.PlayClipAtPoint(healingSound, transform.position);
 			Destroy(gameObject);
 			Destroy(other.gameObject);
-			if (PlayerLives.playerLives >= 5) {
-				PlayerLives.playerLives = 5;
+			if (playerLives.lives >= 5) {
+				playerLives.lives = 5;
 			}
-			PlayerLives.playerLives += 1;
+			playerLives.lives += 1;
 		}
 		else if (other.tag == "Ammo") {
 			AudioSource.PlayClipAtPoint(healingSound, transform.position);

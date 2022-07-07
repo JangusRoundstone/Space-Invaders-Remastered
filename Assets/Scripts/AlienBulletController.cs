@@ -11,11 +11,14 @@ public class AlienBulletController : MonoBehaviour
     public GameObject healingEffect;
     public float speed;
     Vector3 respawn = new Vector3(0, -5, 0);
+    private PlayerLives playerLives;
 
     // Start is called before the first frame update
     void Start()
     {
         bullet = GetComponent<Transform> ();
+        playerLives =  FindObjectOfType<PlayerLives>();
+
     }
 
     void FixedUpdate()
@@ -29,6 +32,7 @@ public class AlienBulletController : MonoBehaviour
     }
 
 
+
     // Update is called once per frame
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -36,19 +40,20 @@ public class AlienBulletController : MonoBehaviour
         {
             Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
 			AudioSource.PlayClipAtPoint(explosionSound, transform.position);
-            if (PlayerLives.playerLives <= 1) 
+            if (playerLives.lives <= 1) 
             {
-                PlayerLives.playerLives = 0;
+                playerLives.lives = 0;
                 Destroy(other.gameObject);
                 Destroy(gameObject);
                 GameOver.isPlayerDead = true;
             } else 
             {
                 if (PlayerController.player.GetComponent<Collider2D>().enabled) { //only trigger when immunity is false
-                    PlayerLives.playerLives -= 1;
+                    //PlayerLives.playerLives -= 1;
+                    playerLives.TakeDamage();
                     Destroy(gameObject);
-                    other.gameObject.transform.position = respawn;
-                    GameManager.playGame = false;
+                    //other.gameObject.transform.position = respawn; 
+                    //GameManager.playGame = false;
                 }
             }
          
