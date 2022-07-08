@@ -169,7 +169,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11711188}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -271,6 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d95448223e552d4fbf55e700c5e7a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerDead: 0
+  gameOver: {fileID: 11711190}
+  restart: {fileID: 547026187}
 --- !u!1 &20695478 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 661642935497782764, guid: 57d19fe0c046a964781b2dd7152762e6, type: 3}
@@ -1221,7 +1224,7 @@ GameObject:
   - component: {fileID: 230822425}
   - component: {fileID: 230822426}
   m_Layer: 0
-  m_Name: Restart
+  m_Name: Restart Keypress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2440,8 +2443,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -66, y: -43}
-  m_SizeDelta: {x: -295, y: 50}
+  m_AnchoredPosition: {x: -64.25, y: -43}
+  m_SizeDelta: {x: -298.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &547026187
 MonoBehaviour:
@@ -2450,7 +2453,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547026185}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -2552,6 +2555,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d95448223e552d4fbf55e700c5e7a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerDead: 0
+  gameOver: {fileID: 11711190}
+  restart: {fileID: 547026187}
 --- !u!1 &576749596 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 661642935497782764, guid: 57d19fe0c046a964781b2dd7152762e6, type: 3}
@@ -10220,6 +10226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2f1bcb01b76c4499bd90ed96f2d5dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   speed: 0.2
   maxBoundX: 12
   minBoundX: -12
@@ -10585,6 +10592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 3
   isTakingDamage: 0
+  render: {fileID: 1290877316}
 --- !u!114 &1294021399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11951,6 +11959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87ad4e2651a8de4989a3c3cfd5fdc44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alienHolder: {fileID: 0}
   speed: 1
   shot: {fileID: 2317463404501505722, guid: d5b3cc7bda4ed0541ab3b930a18b34d6, type: 3}
   fireRate: 0.99

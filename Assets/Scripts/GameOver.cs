@@ -6,15 +6,19 @@ using TMPro;
 
 public class GameOver : MonoBehaviour
 {
-    public static bool isPlayerDead =  false;
-    private TextMeshProUGUI gameOver;
+    public bool isPlayerDead =  false;
+    public TextMeshProUGUI gameOver;
+    public TextMeshProUGUI restart;
     // Start is called before the first frame update
     void Start()
     {
-        gameOver = GetComponent<TextMeshProUGUI> ();
         if (gameOver != null) 
         {
             gameOver.enabled = false;
+        }
+        if (restart != null) 
+        {
+            restart.enabled = false;
         }
         
     }
@@ -26,6 +30,7 @@ public class GameOver : MonoBehaviour
         {
             Time.timeScale = 0;
             gameOver.enabled = true;
+            restart.enabled = true;
         }
     }
 }

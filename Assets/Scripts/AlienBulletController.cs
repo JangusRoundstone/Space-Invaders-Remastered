@@ -12,13 +12,18 @@ public class AlienBulletController : MonoBehaviour
     public float speed;
     Vector3 respawn = new Vector3(0, -5, 0);
     private PlayerLives playerLives;
+    private GameOver gameOver;
+    private RadiatorControl radiatorHealth;
+    private PlayerController playerPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         bullet = GetComponent<Transform> ();
         playerLives =  FindObjectOfType<PlayerLives>();
-
+        gameOver = FindObjectOfType<GameOver>();
+        radiatorHealth = FindObjectOfType<RadiatorControl>();
+        playerPosition = FindObjectOfType<PlayerController>();
     }
 
     void FixedUpdate()
@@ -45,16 +50,11 @@ public class AlienBulletController : MonoBehaviour
                 playerLives.lives = 0;
                 Destroy(other.gameObject);
                 Destroy(gameObject);
-                GameOver.isPlayerDead = true;
+                gameOver.isPlayerDead = true;
             } else 
             {
-                if (PlayerController.player.GetComponent<Collider2D>().enabled) { //only trigger when immunity is false
-                    //PlayerLives.playerLives -= 1;
-                    playerLives.TakeDamage();
-                    Destroy(gameObject);
-                    //other.gameObject.transform.position = respawn; 
-                    //GameManager.playGame = false;
-                }
+                playerLives.TakeDamage();
+                Destroy(gameObject);
             }
          
         } 
@@ -72,10 +72,10 @@ public class AlienBulletController : MonoBehaviour
             Instantiate(healingEffect, bullet.position, transform.rotation = Quaternion.identity);
 			AudioSource.PlayClipAtPoint(healingSound, transform.position);
             Destroy(gameObject);
-            if (RadiatorControl.health >= 5) {
-                RadiatorControl.health = 5;
+            if (radiatorHealth.health >= 5) {
+                radiatorHealth.health = 5;
             } else {
-                RadiatorControl.health += 1;
+                radiatorHealth.health += 1;
             }
         }
     }

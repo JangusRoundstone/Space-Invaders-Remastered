@@ -174,6 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d95448223e552d4fbf55e700c5e7a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerDead: 0
+  gameOver: {fileID: 1795596502}
+  restart: {fileID: 1124722}
 --- !u!114 &1124722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +197,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press R to Restart
+  m_text: Press 'R' to Restart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -6372,7 +6375,7 @@ GameObject:
   - component: {fileID: 230822425}
   - component: {fileID: 230822426}
   m_Layer: 0
-  m_Name: Restart
+  m_Name: Restart Keypress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6963,6 +6966,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87098a5ac8ac26d49b02d6b6a4f6189f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 3
+  isTakingDamage: 0
 --- !u!114 &363317742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14950,6 +14955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87ad4e2651a8de4989a3c3cfd5fdc44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alienHolder: {fileID: 0}
   speed: 1
   shot: {fileID: 2317463404501505722, guid: d5b3cc7bda4ed0541ab3b930a18b34d6, type: 3}
   fireRate: 0.99
@@ -15229,6 +15235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d95448223e552d4fbf55e700c5e7a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerDead: 0
+  gameOver: {fileID: 1795596502}
+  restart: {fileID: 1124722}
 --- !u!114 &1795596502
 MonoBehaviour:
   m_ObjectHideFlags: 0

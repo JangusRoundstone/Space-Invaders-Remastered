@@ -4,32 +4,34 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	public static Transform player;
+	public Transform player;
 	public float speed;
 	public float maxBoundX, minBoundX, maxBoundY, minBoundY;
-
 	public GameObject shot;
 	public Transform ammoHolder;
 	public Transform middleCannonPosition;
 	public Transform rightCannonPosition;
 	public Transform leftCannonPosition;
 	public float fireRate;
-
 	private float nextFire;
 	private AudioSource laser;
+	public Renderer render;
+    public Color colour;
 
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<Transform> ();
 		laser = GetComponent<AudioSource> ();
+		render = GetComponent<Renderer>();
+		colour = render.material.color;
 	}
 
-	IEnumerator ImmuneTime()
-    {
-        yield return new WaitForSeconds(2.0f);
-		player.GetComponent<Collider2D>().enabled = true;
-		GameManager.playGame = true;
-    }
+	// IEnumerator ImmuneTime()
+    // {
+    //     yield return new WaitForSeconds(2.0f);
+	// 	player.GetComponent<Collider2D>().enabled = true;
+	// 	//GameManager.playGame = true;
+    // }
 
 	void FixedUpdate () {
 		float h = Input.GetAxis ("Horizontal");
@@ -67,14 +69,12 @@ public class PlayerController : MonoBehaviour {
 			{
 				laser.Play();
 			}
-			// if (!GameManager.playGame)
-			// 	GameManager.playGame = true; 
 		}
 
-		if (!GameManager.playGame) {
-			player.GetComponent<Collider2D>().enabled = false;
-			StartCoroutine(ImmuneTime());
-		}
+		// if (!GameManager.playGame) {
+		// 	player.GetComponent<Collider2D>().enabled = false;
+		// 	StartCoroutine(ImmuneTime());
+		// }
 	}
 
 

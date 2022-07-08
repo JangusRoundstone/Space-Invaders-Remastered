@@ -21,9 +21,10 @@ public class BossController : MonoBehaviour
     public GameObject bossLaser;
     public TextMeshProUGUI winText;
     public float fireRate;
-    public static float bossHealth = 50;
+    public float bossHealth = 50;
     public AudioClip victoryNote;
     private bool hasVictoryNotePlayed = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -38,59 +39,58 @@ public class BossController : MonoBehaviour
     // Update is called once per frame
     void MoveBoss()
     {
-        if (GameManager.playGame)
+        
+        bossHolder.position += Vector3.right * speed;
+        if (alienHolder.childCount == 0)    {
+            bossHolder.position += Vector3.right * (speed * 2);
+            fireRate = 0.8f;
+        }
+
+        foreach (Transform enemy in bossHolder)
         {
-            bossHolder.position += Vector3.right * speed;
-            if (alienHolder.childCount == 0)    {
-                bossHolder.position += Vector3.right * (speed * 2);
-                fireRate = 0.8f;
+            if (enemy.position.x < -7.5 || enemy.position.x > 8)
+            {
+                speed = -speed;
+                return;
             }
 
-            foreach (Transform enemy in bossHolder)
+            if (UnityEngine.Random.value > fireRate && rightGun != null && leftGun != null)
             {
-                if (enemy.position.x < -7.5 || enemy.position.x > 8)
-                {
-                    speed = -speed;
-                    return;
-                }
-
-                if (UnityEngine.Random.value > fireRate && rightGun != null && leftGun != null)
-                {
-                    Instantiate(bossShot, rightGun.position, rightGun.rotation);
-                    Instantiate(bossShot, leftGun.position, leftGun.rotation);
-                }
-
-            }
-
-            foreach (Transform alien in alienHolder)
-            {
-                if (UnityEngine.Random.value > fireRate)
-                {
-                    Instantiate(alienShot, alien.position, alien.rotation);
-                }
-            }
-            
-            if (bossEye != null && player != null && alienHolder != null && Math.Abs(boss.position.x - player.position.x) <= 0.5f)
-            {
-                Instantiate(bossLaser, bossEye.position, bossEye.rotation);
-            }
-
-            if (SceneManager.GetActiveScene().buildIndex == 3 && alienHolder.childCount == 0 && bossHealth == 0)
-            {
-                
-                if (winText != null)
-                {
-                     winText.enabled = true;
-                }
-                   
-                if (!hasVictoryNotePlayed) {
-                    AudioSource.PlayClipAtPoint(victoryNote, new Vector3(0, 0, -20));
-                    hasVictoryNotePlayed = true;
-                }
-                 
+                Instantiate(bossShot, rightGun.position, rightGun.rotation);
+                Instantiate(bossShot, leftGun.position, leftGun.rotation);
             }
 
         }
+
+        foreach (Transform alien in alienHolder)
+        {
+            if (UnityEngine.Random.value > fireRate)
+            {
+                Instantiate(alienShot, alien.position, alien.rotation);
+            }
+        }
+        
+        if (bossEye != null && player != null && alienHolder != null && Math.Abs(boss.position.x - player.position.x) <= 0.5f)
+        {
+            Instantiate(bossLaser, bossEye.position, bossEye.rotation);
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 3 && alienHolder.childCount == 0 && bossHealth == 0)
+        {
+            
+            if (winText != null)
+            {
+                    winText.enabled = true;
+            }
+                
+            if (!hasVictoryNotePlayed) {
+                AudioSource.PlayClipAtPoint(victoryNote, new Vector3(0, 0, -20));
+                hasVictoryNotePlayed = true;
+            }
+                
+        }
+
+        
         
     }
 }

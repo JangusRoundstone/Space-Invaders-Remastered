@@ -6,23 +6,14 @@ using UnityEngine;
 public class AstronautControl : MonoBehaviour
 {
     public float health = 100;
-
     private bool NoCoroutine = true;
-
     private float PoisonRate = 1;
-
     private float Poison;
-
     public Sprite[] sprites;
-
     private SpriteRenderer LocalSprite;
-
     public GameObject enemy;
-
     new private Transform transform;
-
     public float speed;
-
     Collider2D m_Collider;
 
     // Start is called before the first frame update

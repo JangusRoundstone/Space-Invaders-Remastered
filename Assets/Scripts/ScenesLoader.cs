@@ -8,6 +8,8 @@ public class ScenesLoader : MonoBehaviour
 {
     public TextMeshProUGUI getReadyStage2;
     public TextMeshProUGUI getReadyStage3;
+    private AlienController aliens;
+    private RadiatorControl radiatorHealth;
 
     IEnumerator WaitBeforeStage2()
     {
@@ -23,6 +25,8 @@ public class ScenesLoader : MonoBehaviour
 
     void Start()
     {
+        aliens = FindObjectOfType<AlienController>();
+        radiatorHealth = FindObjectOfType<RadiatorControl>();
         if (getReadyStage2 != null)
         {
             getReadyStage2.enabled = false;
@@ -45,7 +49,7 @@ public class ScenesLoader : MonoBehaviour
             StartCoroutine(WaitBeforeStage2());
         }
        
-        else if (SceneManager.GetActiveScene().buildIndex == 2 && AlienController.alienHolder.childCount == 0 && RadiatorControl.health == 0)
+        else if (SceneManager.GetActiveScene().buildIndex == 2 && aliens.alienHolder.childCount == 0 && radiatorHealth.health == 0)
         {
             if (getReadyStage3 != null)
             {

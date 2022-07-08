@@ -6,44 +6,26 @@ using UnityEngine;
 public class RadiatorControl : MonoBehaviour
 {
     private Transform Radiator;
-
     private Transform RadiatorSpawn;
-
     public Transform Player;
-
     new private Transform transform;
-
     public float speed; 
-
     private SpriteRenderer spriteRenderer_Peace;
-
     public Sprite[] sprites;
-
     private Rigidbody2D rigidBody; 
-
     private bool ToCharge = false;
-
     private Vector2 startPos;
-
-    public static float health = 5;
-
+    public float health = 5;
     private bool Alive = true;
-
     private float NextCharge = 0;
-
     public float ChargeRate = 9;
-
     Collider2D m_Collider;
-
     Vector3 respawn = new Vector3(0, -5, 0);
-
     public AudioClip chargingUpSound;
-
     public AudioClip explosionSound;
-
     public GameObject explosionEffect;
-
     private PlayerLives playerLives;
+    private GameOver gameOver;
 
     void Start()
     {
@@ -54,6 +36,7 @@ public class RadiatorControl : MonoBehaviour
         startPos = Radiator.position;
         m_Collider = GetComponent<Collider2D>();
         playerLives =  FindObjectOfType<PlayerLives>();
+        gameOver = FindObjectOfType<GameOver>();
     }
 
     // Update is called once per frame
@@ -127,12 +110,13 @@ public class RadiatorControl : MonoBehaviour
                 playerLives.lives = 0;
                 Destroy(other.gameObject);
                 Destroy(gameObject);
-                GameOver.isPlayerDead = true;
+                gameOver.isPlayerDead = true;
             } else 
             {
-                playerLives.lives -= 1;
-                other.gameObject.transform.position = respawn;
-                GameManager.playGame = false;
+                playerLives.TakeDamage();
+                //playerLives.lives -= 1;
+                //other.gameObject.transform.position = respawn;
+                //GameManager.playGame = false;
             }
         }
         else if (other.tag == "Base")

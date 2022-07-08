@@ -448,6 +448,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d95448223e552d4fbf55e700c5e7a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerDead: 0
+  gameOver: {fileID: 11711190}
+  restart: {fileID: 547026187}
 --- !u!1 &230822424
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +462,7 @@ GameObject:
   - component: {fileID: 230822425}
   - component: {fileID: 230822426}
   m_Layer: 0
-  m_Name: Restart
+  m_Name: Restart Keypress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1051,6 +1054,7 @@ MonoBehaviour:
   bossLaser: {fileID: 5160666758160312156, guid: 902caf2b78293d142ac025392724ab6c, type: 3}
   winText: {fileID: 1086810837}
   fireRate: 0.92
+  bossHealth: 50
   victoryNote: {fileID: 8300000, guid: b9c199d8b21beef4fa48175511499b22, type: 3}
 --- !u!1001 &514067307
 PrefabInstance:
@@ -1454,6 +1458,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d95448223e552d4fbf55e700c5e7a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerDead: 0
+  gameOver: {fileID: 11711190}
+  restart: {fileID: 547026187}
 --- !u!1 &563150339
 GameObject:
   m_ObjectHideFlags: 0
@@ -7762,6 +7769,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87098a5ac8ac26d49b02d6b6a4f6189f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 3
+  isTakingDamage: 0
 --- !u!114 &1294021399
 MonoBehaviour:
   m_ObjectHideFlags: 0

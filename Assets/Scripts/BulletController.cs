@@ -10,11 +10,13 @@ public class BulletController : MonoBehaviour {
 	public GameObject explosionEffect;
 	public float speed;
 	private PlayerLives playerLives;
+	private BossController health;
 
 	// Use this for initialization
 	void Start () {
 		bullet = GetComponent<Transform> ();
 		playerLives =  FindObjectOfType<PlayerLives>();
+		health = FindObjectOfType<BossController>();
 	}
 
 	void FixedUpdate(){
@@ -42,10 +44,10 @@ public class BulletController : MonoBehaviour {
 			Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
 			AudioSource.PlayClipAtPoint(explosionSound, transform.position);
 			Destroy(gameObject);
-			BossController.bossHealth -= 1;
+			health.bossHealth -= 1;
 			PlayerScore.playerScore += 5;
-			if (BossController.bossHealth <= 0) {
-				BossController.bossHealth = 0;
+			if (health.bossHealth <= 0) {
+				health.bossHealth = 0;
 				Destroy(other.gameObject);
 			}
 		}
