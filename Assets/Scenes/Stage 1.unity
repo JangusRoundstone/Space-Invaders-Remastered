@@ -10238,6 +10238,9 @@ MonoBehaviour:
   rightCannonPosition: {fileID: 1458628951}
   leftCannonPosition: {fileID: 204210204}
   fireRate: 0.5
+  render: {fileID: 0}
+  colour: {r: 0, g: 0, b: 0, a: 0}
+  animator: {fileID: 1290877319}
 --- !u!212 &1290877316
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10592,7 +10595,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 3
   isTakingDamage: 0
-  render: {fileID: 1290877316}
 --- !u!114 &1294021399
 MonoBehaviour:
   m_ObjectHideFlags: 0

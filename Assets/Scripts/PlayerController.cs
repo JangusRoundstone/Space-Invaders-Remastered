@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	private AudioSource laser;
 	public Renderer render;
     public Color colour;
+	public Animator animator;
 
 	// Use this for initialization
 	void Start () {

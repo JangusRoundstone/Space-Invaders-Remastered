@@ -10,6 +10,7 @@ public class PlayerLives : MonoBehaviour
     public bool isTakingDamage = false;
     private PlayerController playerRender;
     private PlayerController playerColour;
+    private PlayerController damageStatus;
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +18,8 @@ public class PlayerLives : MonoBehaviour
         livesText = GetComponent<TextMeshProUGUI>();
         playerRender = FindObjectOfType<PlayerController>();
         playerColour = FindObjectOfType<PlayerController>();
-        //render = GetComponent<Renderer>();
-		//colour = render.material.color;
+        damageStatus = FindObjectOfType<PlayerController>();
+
     }
 
     // Update is called once per frame
@@ -31,6 +32,7 @@ public class PlayerLives : MonoBehaviour
         if (!isTakingDamage) { //prevent player losing 2 or more lives in a row after getting hit once
             lives -= 1;
             isTakingDamage = true;
+            damageStatus.animator.SetBool("IsTakingDamage", true);
             StartCoroutine(Immunity());
         }
 		
@@ -41,6 +43,7 @@ public class PlayerLives : MonoBehaviour
 		playerRender.render.material.color = playerColour.colour;
         yield return new WaitForSeconds(1.5f);
         isTakingDamage = false;
+        damageStatus.animator.SetBool("IsTakingDamage", false);
         playerColour.colour.a = 1f;
 		playerRender.render.material.color = playerColour.colour;
     }
