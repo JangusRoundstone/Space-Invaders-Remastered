@@ -20,7 +20,7 @@ public class RadiatorControl : MonoBehaviour
     private float NextCharge = 0;
     public float ChargeRate = 9;
     Collider2D m_Collider;
-    Vector3 respawn = new Vector3(0, -5, 0);
+    //Vector3 respawn = new Vector3(0, -5, 0);
     public AudioClip chargingUpSound;
     public AudioClip explosionSound;
     public GameObject explosionEffect;
@@ -114,9 +114,6 @@ public class RadiatorControl : MonoBehaviour
             } else 
             {
                 playerLives.TakeDamage();
-                //playerLives.lives -= 1;
-                //other.gameObject.transform.position = respawn;
-                //GameManager.playGame = false;
             }
         }
         else if (other.tag == "Base")
@@ -136,9 +133,9 @@ public class RadiatorControl : MonoBehaviour
             }
         }
         else if(other.tag == "Friendly"){
-            GameObject Astro = other.gameObject; // set Astro to be the Astronaut the Radiator ran into
-            AstronautControl Astronaut = Astro.GetComponent<AstronautControl>(); // access the script on Astro, which is Astronaut (script)
-            Astronaut.health = 0; // set the health of Astro (gameObject) to 0 without affecting other Astronauts
+            GameObject Astro = other.gameObject; //set Astro to be the Astronaut the Radiator ran into
+            AstronautControl Astronaut = Astro.GetComponent<AstronautControl>(); //access the script on Astro, which is Astronaut (script)
+            Astronaut.health = 0; //set the health of Astro (gameObject) to 0 without affecting other Astronauts
         }
         else{
             Destroy(other.gameObject);
