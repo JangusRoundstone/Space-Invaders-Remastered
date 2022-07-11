@@ -14,7 +14,7 @@ public class AlienBulletController : MonoBehaviour
     private PlayerLives playerLives;
     private GameOver gameOver;
     private RadiatorControl radiatorHealth;
-    private PlayerController playerPosition;
+    //private PlayerController playerPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class AlienBulletController : MonoBehaviour
         playerLives =  FindObjectOfType<PlayerLives>();
         gameOver = FindObjectOfType<GameOver>();
         radiatorHealth = FindObjectOfType<RadiatorControl>();
-        playerPosition = FindObjectOfType<PlayerController>();
+        //playerPosition = FindObjectOfType<PlayerController>();
     }
 
     void FixedUpdate()
