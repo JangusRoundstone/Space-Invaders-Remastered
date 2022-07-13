@@ -26,9 +26,8 @@ public class Leaderboard : MonoBehaviour
 
     public void Reset()
     {
-        PlayerPrefs.DeleteKey("HighScore");
-        PlayerPrefs.DeleteKey("PreviousScore");
-        highScoreText.text = "0";
-        previousScoreText.text = "0";
+        PlayerPrefs.DeleteAll();
+        highScore = 0;
+        previousScore = 0;
     }
 }
