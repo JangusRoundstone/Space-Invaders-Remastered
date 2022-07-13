@@ -10,6 +10,7 @@ public class ScenesLoader : MonoBehaviour
     public TextMeshProUGUI getReadyStage3;
     private AlienController aliens;
     private RadiatorControl radiatorHealth;
+    //private PlayerScore score;
 
     IEnumerator WaitBeforeStage2()
     {
@@ -27,6 +28,7 @@ public class ScenesLoader : MonoBehaviour
     {
         aliens = FindObjectOfType<AlienController>();
         radiatorHealth = FindObjectOfType<RadiatorControl>();
+        //score = FindObjectOfType<PlayerScore>();
         if (getReadyStage2 != null)
         {
             getReadyStage2.enabled = false;

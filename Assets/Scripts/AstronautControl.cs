@@ -61,6 +61,5 @@ public class AstronautControl : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         Destroy(gameObject);
-        PlayerScore.playerScore -= 50;
     }
 }

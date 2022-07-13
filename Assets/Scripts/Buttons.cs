@@ -42,6 +42,7 @@ public class Buttons : MonoBehaviour
     public void ReturnButton_Walkthrough()
     {
         Time.timeScale = 1.0f;
+        PlayerScore.playerScore = 0;
         SceneManager.LoadScene("Main Menu");
     }
 

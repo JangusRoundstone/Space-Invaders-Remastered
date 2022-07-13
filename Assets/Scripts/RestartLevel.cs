@@ -7,11 +7,13 @@ public class RestartLevel : MonoBehaviour
 { 
     private PlayerLives playerLives;
     private GameOver gameOver;
+    //private PlayerScore score;
 
     void Start()
     {
         playerLives =  FindObjectOfType<PlayerLives>();
         gameOver = FindObjectOfType<GameOver>();
+        //score = FindObjectOfType<PlayerScore>();
 
     }
     // Update is called once per frame

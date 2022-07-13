@@ -24,6 +24,7 @@ public class BossController : MonoBehaviour
     public float bossHealth = 50;
     public AudioClip victoryNote;
     private bool hasVictoryNotePlayed = false;
+    private PlayerLives playerLives;
     
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class BossController : MonoBehaviour
         }
         InvokeRepeating ("MoveBoss", 0.1f, 0.3f);
         bossHolder = GetComponent<Transform> ();
+        playerLives =  FindObjectOfType<PlayerLives>();
     }
 
     // Update is called once per frame
@@ -75,7 +77,7 @@ public class BossController : MonoBehaviour
             Instantiate(bossLaser, bossEye.position, bossEye.rotation);
         }
 
-        if (SceneManager.GetActiveScene().buildIndex == 3 && alienHolder.childCount == 0 && bossHealth == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 3 && alienHolder.childCount == 0 && bossHealth == 0 && playerLives.lives != 0)
         {
             
             if (winText != null)

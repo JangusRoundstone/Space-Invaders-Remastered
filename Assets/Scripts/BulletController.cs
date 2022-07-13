@@ -11,12 +11,14 @@ public class BulletController : MonoBehaviour {
 	public float speed;
 	private PlayerLives playerLives;
 	private BossController health;
+	//private PlayerScore score;
 
 	// Use this for initialization
 	void Start () {
 		bullet = GetComponent<Transform> ();
 		playerLives =  FindObjectOfType<PlayerLives>();
 		health = FindObjectOfType<BossController>();
+		//score = FindObjectOfType<PlayerScore>();
 	}
 
 	void FixedUpdate(){
