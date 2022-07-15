@@ -14,6 +14,7 @@ public class AlienBulletController : MonoBehaviour
     private PlayerLives playerLives;
     private GameOver gameOver;
     private RadiatorControl radiatorHealth;
+    private Healthbar healthBar;
     //private PlayerController playerPosition;
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class AlienBulletController : MonoBehaviour
         playerLives =  FindObjectOfType<PlayerLives>();
         gameOver = FindObjectOfType<GameOver>();
         radiatorHealth = FindObjectOfType<RadiatorControl>();
+        healthBar = FindObjectOfType<Healthbar>();
         //playerPosition = FindObjectOfType<PlayerController>();
     }
 
@@ -48,6 +50,7 @@ public class AlienBulletController : MonoBehaviour
             if (playerLives.lives <= 1) 
             {
                 playerLives.lives = 0;
+                healthBar.SetHealth(playerLives.lives);
                 Destroy(other.gameObject);
                 Destroy(gameObject);
                 gameOver.isPlayerDead = true;

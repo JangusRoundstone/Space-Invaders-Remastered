@@ -26,6 +26,7 @@ public class RadiatorControl : MonoBehaviour
     public GameObject explosionEffect;
     private PlayerLives playerLives;
     private GameOver gameOver;
+    private Healthbar healthBar;
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class RadiatorControl : MonoBehaviour
         m_Collider = GetComponent<Collider2D>();
         playerLives =  FindObjectOfType<PlayerLives>();
         gameOver = FindObjectOfType<GameOver>();
+        healthBar = FindObjectOfType<Healthbar>();
     }
 
     // Update is called once per frame
@@ -108,6 +110,7 @@ public class RadiatorControl : MonoBehaviour
             if (playerLives.lives == 1) 
             {
                 playerLives.lives = 0;
+                healthBar.SetHealth(playerLives.lives);
                 Destroy(other.gameObject);
                 Destroy(gameObject);
                 gameOver.isPlayerDead = true;

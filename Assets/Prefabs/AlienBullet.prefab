@@ -150,3 +150,4 @@ MonoBehaviour:
   explosionEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
   healingEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
   speed: 0.1
+  healthBar: {fileID: 0}

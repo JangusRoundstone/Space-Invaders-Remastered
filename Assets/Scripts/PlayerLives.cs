@@ -11,6 +11,7 @@ public class PlayerLives : MonoBehaviour
     private PlayerController playerRender;
     private PlayerController playerColour;
     private PlayerController damageStatus;
+    public Healthbar healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -19,18 +20,19 @@ public class PlayerLives : MonoBehaviour
         playerRender = FindObjectOfType<PlayerController>();
         playerColour = FindObjectOfType<PlayerController>();
         damageStatus = FindObjectOfType<PlayerController>();
-
+        healthBar.SetMaxHealth(lives);
     }
 
     // Update is called once per frame
     void Update()
     {
-        livesText.text = "Lives: " + lives;
+        //livesText.text = "Lives: " + lives;
     }
 
     public void TakeDamage() {
         if (!isTakingDamage) { //prevent player losing 2 or more lives in a row after getting hit once
             lives -= 1;
+            healthBar.SetHealth(lives);
             isTakingDamage = true;
             damageStatus.animator.SetBool("IsTakingDamage", true);
             StartCoroutine(Immunity());

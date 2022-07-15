@@ -25,6 +25,7 @@ public class BossController : MonoBehaviour
     public AudioClip victoryNote;
     private bool hasVictoryNotePlayed = false;
     private PlayerLives playerLives;
+    //private AlienBulletController alienBulletSpeed;
     
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class BossController : MonoBehaviour
         InvokeRepeating ("MoveBoss", 0.1f, 0.3f);
         bossHolder = GetComponent<Transform> ();
         playerLives =  FindObjectOfType<PlayerLives>();
+        //alienBulletSpeed = FindObjectOfType<AlienBulletController>();
     }
 
     // Update is called once per frame
@@ -44,8 +46,8 @@ public class BossController : MonoBehaviour
         
         bossHolder.position += Vector3.right * speed;
         if (alienHolder.childCount == 0)    {
-            bossHolder.position += Vector3.right * (speed * 2);
-            fireRate = 0.8f;
+            bossHolder.position += Vector3.right * (speed * 3);
+            fireRate = 0.7f;
         }
 
         foreach (Transform enemy in bossHolder)
@@ -72,7 +74,7 @@ public class BossController : MonoBehaviour
             }
         }
         
-        if (bossEye != null && player != null && alienHolder != null && Math.Abs(boss.position.x - player.position.x) <= 0.5f)
+        if (bossEye != null && player != null && alienHolder != null && Math.Abs(boss.position.x - player.position.x) <= 0.75f)
         {
             Instantiate(bossLaser, bossEye.position, bossEye.rotation);
         }
