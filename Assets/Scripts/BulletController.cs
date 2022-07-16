@@ -11,16 +11,12 @@ public class BulletController : MonoBehaviour {
 	public float speed;
 	private PlayerLives playerLives;
 	private BossController health;
-	private Healthbar healthBar;
-	//private PlayerScore score;
 
 	// Use this for initialization
 	void Start () {
 		bullet = GetComponent<Transform> ();
 		playerLives =  FindObjectOfType<PlayerLives>();
 		health = FindObjectOfType<BossController>();
-		healthBar =  FindObjectOfType<Healthbar>();
-		//score = FindObjectOfType<PlayerScore>();
 	}
 
 	void FixedUpdate(){
@@ -71,7 +67,6 @@ public class BulletController : MonoBehaviour {
 			Destroy(gameObject);
 			Destroy(other.gameObject);
 			playerLives.lives += 1;
-			healthBar.SetHealth(playerLives.lives);
 			if (playerLives.lives >= 3) {
 				playerLives.lives = 3;
 			}

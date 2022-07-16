@@ -25,7 +25,6 @@ public class BossController : MonoBehaviour
     public AudioClip victoryNote;
     private bool hasVictoryNotePlayed = false;
     private PlayerLives playerLives;
-    //private AlienBulletController alienBulletSpeed;
     
     // Start is called before the first frame update
     void Start()
@@ -37,7 +36,6 @@ public class BossController : MonoBehaviour
         InvokeRepeating ("MoveBoss", 0.1f, 0.3f);
         bossHolder = GetComponent<Transform> ();
         playerLives =  FindObjectOfType<PlayerLives>();
-        //alienBulletSpeed = FindObjectOfType<AlienBulletController>();
     }
 
     // Update is called once per frame
@@ -92,9 +90,6 @@ public class BossController : MonoBehaviour
                 hasVictoryNotePlayed = true;
             }
                 
-        }
-
-        
-        
+        }               
     }
 }

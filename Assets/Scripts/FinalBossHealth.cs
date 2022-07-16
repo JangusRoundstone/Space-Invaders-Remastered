@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class FinalBossHealth : MonoBehaviour
 {
-    private TextMeshProUGUI finalBossHealthText;
     private BossController health;
+    public Healthbar bossHealthBar;
+
     // Start is called before the first frame update
     void Start()
     {
-        finalBossHealthText = GetComponent<TextMeshProUGUI>();
         health = FindObjectOfType<BossController>();
+        bossHealthBar.SetMaxHealth(health.bossHealth);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D other) 
     {
-        finalBossHealthText.text = "Boss Health: " + health.bossHealth;
+        if (other.tag == "Bullet") {
+            bossHealthBar.SetHealth(health.bossHealth);
+        }
     }
 }
