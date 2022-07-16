@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 130341587}
   - component: {fileID: 130341586}
   m_Layer: 5
-  m_Name: Healthbar
+  m_Name: Player Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,7 +623,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -264.59998, y: 431.9}
+  m_AnchoredPosition: {x: -264.59998, y: 433.7}
   m_SizeDelta: {x: 169.0175, y: 21.789}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &130341586
@@ -8589,6 +8589,7 @@ MonoBehaviour:
   render: {fileID: 0}
   colour: {r: 0, g: 0, b: 0, a: 0}
   animator: {fileID: 1290877319}
+  playerHealthBar: {fileID: 130341586}
 --- !u!212 &1290877316
 SpriteRenderer:
   m_ObjectHideFlags: 0

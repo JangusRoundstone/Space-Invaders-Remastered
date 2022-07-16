@@ -43,7 +43,7 @@ public class PlayerLives : MonoBehaviour
     IEnumerator Immunity() {
         playerColour.colour.a = 0.5f; //change alpha to make it translucent
 		playerRender.render.material.color = playerColour.colour;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.0f);
         isTakingDamage = false;
         damageStatus.animator.SetBool("IsTakingDamage", false);
         playerColour.colour.a = 1f;

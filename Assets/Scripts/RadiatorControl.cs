@@ -26,7 +26,8 @@ public class RadiatorControl : MonoBehaviour
     public GameObject explosionEffect;
     private PlayerLives playerLives;
     private GameOver gameOver;
-    private Healthbar healthBar;
+    public Healthbar playerHealthBar;
+    public Healthbar radiatorHealthBar;
 
     void Start()
     {
@@ -38,7 +39,7 @@ public class RadiatorControl : MonoBehaviour
         m_Collider = GetComponent<Collider2D>();
         playerLives =  FindObjectOfType<PlayerLives>();
         gameOver = FindObjectOfType<GameOver>();
-        healthBar = FindObjectOfType<Healthbar>();
+        radiatorHealthBar.SetMaxHealth(health);
     }
 
     // Update is called once per frame
@@ -62,7 +63,7 @@ public class RadiatorControl : MonoBehaviour
     {
         for(int i = 0; i < 3; i++)
         {
-            double wait = 0.5-i*0.2;
+            double wait = 0.22-i*0.2;
 
             spriteRenderer_Peace.sprite = sprites[1];
             yield return new WaitForSeconds((float)wait);
@@ -76,10 +77,10 @@ public class RadiatorControl : MonoBehaviour
         while(Radiator.position.y < 10)
         {
             spriteRenderer_Peace.sprite = sprites[1];
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
 
             spriteRenderer_Peace.sprite = sprites[0];
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
         }
         Radiator.position = startPos;
         rigidBody.velocity = new Vector3(0, 0, 0);
@@ -107,10 +108,10 @@ public class RadiatorControl : MonoBehaviour
         AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         if (other.tag == "Player")
         {
-            if (playerLives.lives == 1) 
+            if (!playerLives.isTakingDamage && playerLives.lives == 1) 
             {
                 playerLives.lives = 0;
-                healthBar.SetHealth(playerLives.lives);
+                playerHealthBar.SetHealth(playerLives.lives);
                 Destroy(other.gameObject);
                 Destroy(gameObject);
                 gameOver.isPlayerDead = true;
@@ -127,8 +128,10 @@ public class RadiatorControl : MonoBehaviour
         }
         else if (other.tag == "Bullet"){
             health -= 1;
+            radiatorHealthBar.SetHealth(health);
             Destroy(other.gameObject);
             if(health <= 0){
+                radiatorHealthBar.SetHealth(health);
                 Alive = false;
                 StopAllCoroutines();
                 rigidBody.velocity = new Vector3(0, 0, 0);
@@ -139,6 +142,10 @@ public class RadiatorControl : MonoBehaviour
             GameObject Astro = other.gameObject; //set Astro to be the Astronaut the Radiator ran into
             AstronautControl Astronaut = Astro.GetComponent<AstronautControl>(); //access the script on Astro, which is Astronaut (script)
             Astronaut.health = 0; //set the health of Astro (gameObject) to 0 without affecting other Astronauts
+        }
+        else if (other.tag == "EnemyBullet")
+        {
+            radiatorHealthBar.SetHealth(health);
         }
         else{
             Destroy(other.gameObject);

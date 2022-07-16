@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour {
 	public Renderer render;
     public Color colour;
 	public Animator animator;
+	public Healthbar playerHealthBar;
+	private PlayerLives playerLives;
 
 	// Use this for initialization
 	void Start () {
@@ -25,14 +27,8 @@ public class PlayerController : MonoBehaviour {
 		laser = GetComponent<AudioSource> ();
 		render = GetComponent<Renderer>();
 		colour = render.material.color;
+		playerLives = FindObjectOfType<PlayerLives>();
 	}
-
-	// IEnumerator ImmuneTime()
-    // {
-    //     yield return new WaitForSeconds(2.0f);
-	// 	player.GetComponent<Collider2D>().enabled = true;
-	// 	//GameManager.playGame = true;
-    // }
 
 	void FixedUpdate () {
 		float h = Input.GetAxis ("Horizontal");
@@ -71,11 +67,13 @@ public class PlayerController : MonoBehaviour {
 				laser.Play();
 			}
 		}
+	}
 
-		// if (!GameManager.playGame) {
-		// 	player.GetComponent<Collider2D>().enabled = false;
-		// 	StartCoroutine(ImmuneTime());
-		// }
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "EnemyBullet") {
+			playerHealthBar.SetHealth(playerLives.lives);
+		}
 	}
 
 

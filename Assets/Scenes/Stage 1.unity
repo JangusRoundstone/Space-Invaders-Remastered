@@ -10687,7 +10687,7 @@ GameObject:
   - component: {fileID: 1251889898}
   - component: {fileID: 1251889899}
   m_Layer: 5
-  m_Name: Healthbar
+  m_Name: Player Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10864,6 +10864,7 @@ MonoBehaviour:
   render: {fileID: 0}
   colour: {r: 0, g: 0, b: 0, a: 0}
   animator: {fileID: 1290877319}
+  playerHealthBar: {fileID: 1251889899}
 --- !u!212 &1290877316
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -14,8 +14,6 @@ public class AlienBulletController : MonoBehaviour
     private PlayerLives playerLives;
     private GameOver gameOver;
     private RadiatorControl radiatorHealth;
-    private Healthbar healthBar;
-    //private PlayerController playerPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +22,6 @@ public class AlienBulletController : MonoBehaviour
         playerLives =  FindObjectOfType<PlayerLives>();
         gameOver = FindObjectOfType<GameOver>();
         radiatorHealth = FindObjectOfType<RadiatorControl>();
-        healthBar = FindObjectOfType<Healthbar>();
-        //playerPosition = FindObjectOfType<PlayerController>();
     }
 
     void FixedUpdate()
@@ -47,10 +43,9 @@ public class AlienBulletController : MonoBehaviour
         {
             Instantiate(explosionEffect, bullet.position, transform.rotation = Quaternion.identity);
 			AudioSource.PlayClipAtPoint(explosionSound, transform.position);
-            if (playerLives.lives <= 1) 
+            if (!playerLives.isTakingDamage && playerLives.lives <= 1) 
             {
                 playerLives.lives = 0;
-                healthBar.SetHealth(playerLives.lives);
                 Destroy(other.gameObject);
                 Destroy(gameObject);
                 gameOver.isPlayerDead = true;
