@@ -31,21 +31,43 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
+    /**
+     *Sets the game resolution as per the players' choice
+     *@param[in] resolutionIndex The index position of resolution assigned in the array
+     */
+
+
     public void SetResolution (int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
+    
+    /**
+     *Allows the player to adjust the game background music after converting to log value
+     *@param[in] volume The volume input into the audio mixer
+     */
 
     public void SetVolume (float volume)
     {
         audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
     }
 
+    /**
+     *Allows the player to adjust the game graphics
+     *@param[in] qualityIndex The index position of resolution assigned in the array
+     */
+
     public void SetQuality (int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
     }
+
+    /**
+     *Allows the player to play in fullscreen mode or windowed mode
+     *@param[in] isFullScreen The boolean value to set game to fullscreen mode when true and 
+     *windowed mode when false
+     */
 
     public void SetFullScreen (bool isFullScreen)
     {

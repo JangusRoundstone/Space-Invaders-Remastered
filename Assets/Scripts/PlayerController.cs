@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
 	public Animator animator;
 	public Healthbar playerHealthBar;
 	private PlayerLives playerLives;
+	private GameOver gameOver;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour {
 		render = GetComponent<Renderer>();
 		colour = render.material.color;
 		playerLives = FindObjectOfType<PlayerLives>();
+		gameOver = FindObjectOfType<GameOver>();
 	}
 
 	void FixedUpdate () {
@@ -73,7 +75,20 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (other.tag == "EnemyBullet") {
 			playerHealthBar.SetHealth(playerLives.lives);
-		}
+		} else if (other.tag == "Alien") {
+            if (!playerLives.isTakingDamage && playerLives.lives <= 1) 
+            {
+                playerLives.lives = 0;
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+                gameOver.isPlayerDead = true;
+            } else 
+            {
+                playerLives.TakeDamage();
+                Destroy(gameObject);
+            }
+        }
+    
 	}
 
 

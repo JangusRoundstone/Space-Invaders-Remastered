@@ -12,7 +12,6 @@ public class AlienController : MonoBehaviour
     public float fireRate = 0.99f;
     private GameOver gameOver;
 
-    // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating ("MoveAlien", 0.1f, 0.3f);
@@ -20,7 +19,6 @@ public class AlienController : MonoBehaviour
         gameOver = FindObjectOfType<GameOver>();
     }
 
-    // Update is called once per frame
     void MoveAlien()
     {
         alienHolder.position += Vector3.right * speed;
